@@ -176,10 +176,6 @@ h1 {
 			outline: none;
 			border: 1px solid var(--input-focus);
 		}
-
-		&::placeholder {
-			text-transform: capitalize;
-		}
 	}
 
 	&__submit-btn {

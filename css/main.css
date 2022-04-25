@@ -181,22 +181,6 @@ h1 {
   border: 1px solid var(--input-focus);
 }
 
-.form input::-webkit-input-placeholder {
-  text-transform: capitalize;
-}
-
-.form input:-ms-input-placeholder {
-  text-transform: capitalize;
-}
-
-.form input::-ms-input-placeholder {
-  text-transform: capitalize;
-}
-
-.form input::placeholder {
-  text-transform: capitalize;
-}
-
 .form__submit-btn {
   display: -ms-grid;
   display: grid;
