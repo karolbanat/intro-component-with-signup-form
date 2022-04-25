@@ -20,6 +20,7 @@
 	--spacing-300: 1.25em;
 	--spacing-400: 1.5em;
 	--spacing-500: 2em;
+	--spacing-600: 2.5em;
 	--spacing-800: 3.75em;
 	--spacing-900: 4.5em;
 
@@ -35,6 +36,7 @@
 	--terms-link: var(--clr-primary-600);
 	--shadow: var(--clr-transparent-black);
 
+	--input: var(--clr-neutral-300);
 	--input-border: var(--clr-transparent-black);
 	--input-focus: var(--clr-neutral-300);
 
@@ -70,29 +72,49 @@ main {
 	min-height: 100vh;
 	background-image: url('../images/bg-intro-mobile.png');
 	background-color: var(--main-bg);
+	background-position: center;
+
+	@media (min-width: 54em) {
+		background-image: url('../images/bg-intro-desktop.png');
+	}
 }
 
 h1 {
 	margin-bottom: var(--spacing-0);
-	font-size: 2.6rem;
-	line-height: 1.3;
+	font-size: clamp(2.6rem, 6vw, 5rem);
+	line-height: 1.1;
 }
 
 // intro section with form
 .intro {
+	max-width: 70em;
+
+	@media (min-width: 54em) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--spacing-500);
+	}
+
 	&__header {
 		padding-block: var(--spacing-800);
 		text-align: center;
+
+		@media (min-width: 54em) {
+			display: grid;
+			place-content: center start;
+			text-align: left;
+		}
 	}
 
 	&__form-container {
 		display: grid;
-		gap: var(--spacing-300);
+		gap: var(--spacing-400);
 	}
 
 	&__banner {
 		padding: var(--spacing-400) var(--spacing-900) var(--spacing-300);
 		margin-inline: auto;
+		width: 100%;
 		font-size: 1.4rem;
 		text-align: center;
 		background-color: var(--banner-bg);
@@ -111,9 +133,11 @@ h1 {
 	border-radius: 10px;
 	box-shadow: 0 8px 0 var(--shadow);
 
+	@media (min-width: 54em) {
+		padding: var(--spacing-600);
+	}
+
 	& fieldset {
-		display: grid;
-		gap: var(--spacing-200);
 		border: none;
 	}
 
@@ -122,8 +146,31 @@ h1 {
 		width: 100%;
 		border-radius: 6px;
 		border: 1px solid var(--input-border);
+		font-size: 1.4rem;
 		font-family: var(--ff-primary);
 		font-weight: 600;
+		color: var(--input);
+
+		@media (min-width: 54em) {
+			padding-inline: var(--spacing-600) var(--spacing-400);
+		}
+
+		&.error {
+			margin-bottom: 0.25em;
+			color: var(--error-input);
+			border: 2px solid var(--error-border);
+			background-image: url('../images/icon-error.svg');
+			background-repeat: no-repeat;
+			background-position: 95% 50%;
+
+			& + .error-msg {
+				display: block;
+			}
+		}
+
+		&:not(:first-of-type) {
+			margin-top: var(--spacing-300);
+		}
 
 		&:focus {
 			outline: none;
@@ -142,7 +189,7 @@ h1 {
 		text-align: center;
 
 		padding: var(--spacing-200);
-		margin-block: var(--spacing-200);
+		margin-block: var(--spacing-300);
 		width: 100%;
 
 		// setting text styles
@@ -186,4 +233,12 @@ h1 {
 			}
 		}
 	}
+}
+
+.error-msg {
+	display: none;
+	font-size: 1.2rem;
+	font-style: italic;
+	text-align: right;
+	color: var(--error-msg);
 }

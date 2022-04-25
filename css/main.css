@@ -12,6 +12,7 @@
   --spacing-300: 1.25em;
   --spacing-400: 1.5em;
   --spacing-500: 2em;
+  --spacing-600: 2.5em;
   --spacing-800: 3.75em;
   --spacing-900: 4.5em;
   --body: var(--clr-white);
@@ -23,6 +24,7 @@
   --terms: var(--clr-neutral-500);
   --terms-link: var(--clr-primary-600);
   --shadow: var(--clr-transparent-black);
+  --input: var(--clr-neutral-300);
   --input-border: var(--clr-transparent-black);
   --input-focus: var(--clr-neutral-300);
   --error-msg: var(--clr-primary-600);
@@ -57,12 +59,33 @@ main {
   min-height: 100vh;
   background-image: url("../images/bg-intro-mobile.png");
   background-color: var(--main-bg);
+  background-position: center;
+}
+
+@media (min-width: 54em) {
+  main {
+    background-image: url("../images/bg-intro-desktop.png");
+  }
 }
 
 h1 {
   margin-bottom: var(--spacing-0);
-  font-size: 2.6rem;
-  line-height: 1.3;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.1;
+}
+
+.intro {
+  max-width: 70em;
+}
+
+@media (min-width: 54em) {
+  .intro {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-500);
+  }
 }
 
 .intro__header {
@@ -70,15 +93,25 @@ h1 {
   text-align: center;
 }
 
+@media (min-width: 54em) {
+  .intro__header {
+    display: -ms-grid;
+    display: grid;
+    place-content: center start;
+    text-align: left;
+  }
+}
+
 .intro__form-container {
   display: -ms-grid;
   display: grid;
-  gap: var(--spacing-300);
+  gap: var(--spacing-400);
 }
 
 .intro__banner {
   padding: var(--spacing-400) var(--spacing-900) var(--spacing-300);
   margin-inline: auto;
+  width: 100%;
   font-size: 1.4rem;
   text-align: center;
   background-color: var(--banner-bg);
@@ -99,10 +132,13 @@ h1 {
           box-shadow: 0 8px 0 var(--shadow);
 }
 
+@media (min-width: 54em) {
+  .form {
+    padding: var(--spacing-600);
+  }
+}
+
 .form fieldset {
-  display: -ms-grid;
-  display: grid;
-  gap: var(--spacing-200);
   border: none;
 }
 
@@ -111,8 +147,33 @@ h1 {
   width: 100%;
   border-radius: 6px;
   border: 1px solid var(--input-border);
+  font-size: 1.4rem;
   font-family: var(--ff-primary);
   font-weight: 600;
+  color: var(--input);
+}
+
+@media (min-width: 54em) {
+  .form input {
+    padding-inline: var(--spacing-600) var(--spacing-400);
+  }
+}
+
+.form input.error {
+  margin-bottom: 0.25em;
+  color: var(--error-input);
+  border: 2px solid var(--error-border);
+  background-image: url("../images/icon-error.svg");
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.form input.error + .error-msg {
+  display: block;
+}
+
+.form input:not(:first-of-type) {
+  margin-top: var(--spacing-300);
 }
 
 .form input:focus {
@@ -142,7 +203,7 @@ h1 {
   place-content: center;
   text-align: center;
   padding: var(--spacing-200);
-  margin-block: var(--spacing-200);
+  margin-block: var(--spacing-300);
   width: 100%;
   font-size: 1.5rem;
   font-family: var(--ff-primary);
@@ -184,5 +245,13 @@ h1 {
 
 .form__terms a:hover {
   color: rgba(255, 122, 122, 0.7);
+}
+
+.error-msg {
+  display: none;
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: right;
+  color: var(--error-msg);
 }
 /*# sourceMappingURL=main.css.map */
